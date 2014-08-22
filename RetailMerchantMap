@@ -1,0 +1,13 @@
+package KhoslaLab;
+
+import java.util.HashMap;
+import java.util.Map;
+
+/*
+ * key of the map is in the format : retail merchant name + year + month example: merchant name: shubham   year : 2014  month : 08  -> key shubham201408
+ */
+
+class RetailMerchantMap
+{
+	static Map<String,MerchantTrasanctionDetails> retailMerchantMap = new HashMap<String, MerchantTrasanctionDetails>();  // map to be used for storing retail merchant information
+}
