@@ -1,0 +1,37 @@
+package KhoslaLab;
+
+class TrasanctionCharges
+{
+	public static double CalculateTrasanctionCharges(String merchant, double transaction)
+	{
+		MerchantTrasanctionDetails merchantTrasanctionDetails =  RetailMerchantMap.retailMerchantMap.get(merchant);    // Extract retail merchant details from map
+		int freeMonthTrasaction = merchantTrasanctionDetails.getFreeTransaction();                                     // free transaction left in a month
+		double totalMonthTrasaction = merchantTrasanctionDetails.getTotalAmount();                                     // total transaction in month
+		double rate =0.0;
+		// calculate charges
+		if(freeMonthTrasaction>0 && transaction <=5000.00)															  
+		{
+			merchantTrasanctionDetails.setFreeTransaction(freeMonthTrasaction-1);										// update free transaction of a  month
+			rate = 0.0;
+		}
+		else if(totalMonthTrasaction>=50000.00)
+		{
+			rate = 0.005;
+		}
+		else if(transaction<5000.00)
+		{
+			rate = .02;
+		}
+		else if(transaction <=9999.99)
+		{
+			rate =  .015;
+		}
+		else
+		{
+			rate = .01;
+		}
+		merchantTrasanctionDetails.setTotalAmount(totalMonthTrasaction + transaction);								   // update monthly transaction
+		RetailMerchantMap.retailMerchantMap.put(merchant, merchantTrasanctionDetails);								   // update user detail map 
+		return rate;
+	}
+}
