@@ -1,0 +1,42 @@
+package KhoslaLab;
+
+import java.util.Scanner;
+
+public class PosTerminalStart
+{
+	public static void main(String args[])
+	{
+		Scanner in = new Scanner(System.in);                                               // input from user
+		int testCases = in.nextInt();                                                      // number of test cases
+		boolean skip  =true;													           // avoid first empty string
+		while(testCases--!=0)
+		{
+			
+			String TransactionDetails = in.nextLine();                                     // Transaction details from input
+			String[] TransactionDetailsArray = TransactionDetails.split(",");              // split Transaction details
+			if(skip)                  												       // Avoid empty string sue to entry key
+			{
+				skip = false;
+				testCases++;
+				continue;
+			}
+			if(TransactionDetailsArray.length<3)                                            // check for invalid details
+			{
+				System.out.println("Invalid Detail");
+				continue;
+			}
+			String date = TransactionDetailsArray[0];                                       // date from user input
+			String retailMerchant = TransactionDetailsArray[1];                             // retail merchant name
+			double Transaction = Double.valueOf(TransactionDetailsArray[2]);                // transaction amount
+			double charges =0.0;															// charges to be applied
+			String[] dateArray = date.split("-");                                           // split date
+			retailMerchant = retailMerchant+dateArray[0]+dateArray[1];                      // modified retailer name to be used for calculating charges 
+			if(!RetailMerchantMap.retailMerchantMap.containsKey(retailMerchant))
+			{
+				RetailMerchantMap.retailMerchantMap.put(retailMerchant, new MerchantTrasanctionDetails(0.0, 2));
+			}
+			charges = TrasanctionCharges.CalculateTrasanctionCharges(retailMerchant, Transaction);   // calculate charges
+			System.out.format("%.2f\n",(Math.ceil(Transaction * charges)));                          // output 
+		}
+	}
+}
