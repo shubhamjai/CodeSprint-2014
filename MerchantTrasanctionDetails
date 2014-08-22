@@ -1,0 +1,33 @@
+package KhoslaLab;
+
+class MerchantTrasanctionDetails
+{
+	double totalAmount;                                                         // Total Amount of Transaction done in month 
+	int freeTransaction;														// free transaction of the months
+
+	MerchantTrasanctionDetails(double totalAmount, int freeTransaction)
+	{
+		this.totalAmount = totalAmount;
+		this.freeTransaction = freeTransaction;
+	}
+	
+	public void setTotalAmount(double totalAmount)
+	{
+		this.totalAmount = totalAmount;
+	}
+
+	public void setFreeTransaction(int freeTransaction)
+	{
+		this.freeTransaction = freeTransaction;
+	}
+
+	public double getTotalAmount()
+	{
+		return totalAmount;
+	}
+	
+	public int getFreeTransaction()
+	{
+		return freeTransaction;
+	}
+}
